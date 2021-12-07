@@ -1,0 +1,26 @@
+type OptionPool @entity {
+  id: ID!
+  pool: String
+  base: String
+  short: String
+  optionType: String
+  liquidity: BigInt
+  bcv: BigInt
+  strike: BigInt
+  maturity: BigInt
+}
+
+type Option @entity {
+  id: ID!
+  status: OptionStatus!
+  pool: String
+  user: String
+  amountOut: BigInt
+  amountIn: BigInt
+}
+
+enum OptionStatus @entity {
+  submitted
+  executed
+  cancelled
+}

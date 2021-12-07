@@ -1,0 +1,5 @@
+{
+  "network": "goerli",
+  "optionPoolFactory": "0xDbF84f29AA880fc3359895c8248CFFcf971c9270",
+  "optionPoolFactoryStartBlock": 5981891
+}

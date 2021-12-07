@@ -1,0 +1,45 @@
+specVersion: 0.0.2
+description: Aave Protection Subgraph
+repository: https://github.com/gelatodigital/aave-protection-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: OptionPoolFactory
+    network: {{network}}
+    source:
+      address: "{{optionPoolFactory}}"
+      abi: OptionPoolFactory
+      startBlock: {{optionPoolFactoryStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - OptionPool
+      abis:
+        - name: OptionPoolFactory
+          file: ./abis/OptionPoolFactory.json
+      eventHandlers:
+        - event: LogOptionPoolCreation(bytes32,address,address,address,string,uint256,uint256,uint256,uint256)
+          handler: handleOptionPoolCreated
+      file: ./src/mappings/optionPoolFactoryMapping.ts
+  - kind: ethereum/contract
+    name: OptionPool
+    network: {{network}}
+    source:
+      abi: OptionPool
+      startBlock: {{optionPoolFactoryStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Option
+      abis:
+        - name: OptionPool
+          file: ./abis/OptionPool.json
+      eventHandlers:
+        - event: LogOptionCreation(indexed uint256,indexed address,address,uint256,uint256)
+          handler: handleCreateOption
+      file: ./src/mappings/optionPoolMapping.ts
