@@ -12,6 +12,7 @@ type OptionPool @entity {
 
 type Option @entity {
   id: ID!
+  tokenID: BigInt
   status: OptionStatus!
   pool: String
   user: String

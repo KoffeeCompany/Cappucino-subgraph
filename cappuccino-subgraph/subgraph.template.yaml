@@ -1,6 +1,6 @@
 specVersion: 0.0.2
-description: Aave Protection Subgraph
-repository: https://github.com/gelatodigital/aave-protection-subgraph
+description: Cappucino
+repository: https://github.com/KoffeeCompany/Cappucino-subgraph
 schema:
   file: ./schema.graphql
 dataSources:

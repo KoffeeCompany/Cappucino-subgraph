@@ -1,8 +1,8 @@
-import { log, BigInt } from "@graphprotocol/graph-ts";
+import { log } from "@graphprotocol/graph-ts";
 import { Option } from "../../generated/schema";
 import {LogOptionCreation} from "../../generated/OptionPool/OptionPool";
 
-export function handleCreateOption(event: LogOptionCreation) {
+export function handleCreateOption(event: LogOptionCreation): void {
   let entity = Option.load(event.params.id.toString());
   if (entity != null) {
     log.debug("Duplicate Option {}", [event.params.id.toString()]);
